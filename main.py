@@ -6,7 +6,7 @@ class CoffeeMachine:
         self.cups = cups
         self.money = money
 
-    def remaining(self):
+    def stock(self):
         print(f"{self.water} of water")
         print(f"{self.milk} of milk")
         print(f"{self.coffee_beans} of coffee beans")
@@ -20,8 +20,8 @@ class CoffeeMachine:
         self.cups += int(input("Write how many disposable coffee cups you want to add:\n"))
 
     def take(self):
-        print(f"I gave you ${self.money}")
-        self.money = 0
+        how_much = int(input(f"how much you want to take?\n"))
+        self.money -= how_much
 
     def buy(self, coffee_type):
         if self.cups < 1:
@@ -63,9 +63,9 @@ class CoffeeMachine:
 
     def start(self):
         while True:
-            action = input("Write action (buy, fill, take, remaining, exit):\n")
-            if action == "remaining":
-                self.remaining()
+            action = input("Write action (buy, fill, take, stock, exit):\n")
+            if action == "stock":
+                self.stock()
                 continue
             elif action == "buy":
                 coffee_type = input(
@@ -82,5 +82,7 @@ class CoffeeMachine:
                 break
 
 
+# Sample working of above program with machine_1
+# The values given in the call is initial stock in machine
 machine_1 = CoffeeMachine(400, 540, 120, 9, 550)
 machine_1.start()
